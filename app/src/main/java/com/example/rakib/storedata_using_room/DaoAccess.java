@@ -22,8 +22,18 @@ public interface DaoAccess {
     //endregion
 
     //region Read/Get Data
-    @Query("SELECT * FROM Movies WHERE movieId = :movieId")
+    @Query("SELECT * FROM Movies WHERE movieid = :movieId")
     Movies fetchOneMoviesbyMovieId(int movieId);
+
+    @Query("SELECT * FROM Movies")
+   List<Movies> fetchAllMoviesbyMovie();
+
+    @Query("DELETE FROM  Movies ")
+    abstract void clearMovies();
+
+
+
+
     //endregion
 
     //region Update
@@ -35,6 +45,7 @@ public interface DaoAccess {
     @Delete
     void deleteMovie(Movies movies);
     //endregion
+
 
 
 }
