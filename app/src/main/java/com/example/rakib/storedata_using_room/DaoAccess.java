@@ -1,10 +1,14 @@
 package com.example.rakib.storedata_using_room;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.Maybe;
+import io.reactivex.Single;
 
 import java.util.List;
 //Todo: Create a Dao or Data Access Object for accessing Database
@@ -23,7 +27,12 @@ public interface DaoAccess {
 
     //region Read/Get Data
     @Query("SELECT * FROM Movies WHERE movieId = :movieId")
-    Movies fetchOneMoviesbyMovieId(int movieId);
+    Maybe<Movies> fetchOneMoviesbyMovieId(int movieId);
+    //endregion
+
+    //region Read/Get Data
+    @Query("SELECT * FROM Movies")
+    Flowable<List<Movies>> fetchMovies();
     //endregion
 
     //region Update
